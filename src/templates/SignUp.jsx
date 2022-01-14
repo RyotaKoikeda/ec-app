@@ -1,7 +1,10 @@
 import React, { useCallback, useState } from "react";
-import { TextInput } from "../components/UiKit";
+import { PrimaryButton, TextInput } from "../components/UiKit";
+import { useDispatch } from "react-redux";
+import { signUp } from "../reducks/users/operations";
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState(""),
     [email, setEmail] = useState(""),
     [password, setPassword] = useState(""),
@@ -79,6 +82,15 @@ const SignUp = () => {
         type={"password"}
         onChange={inputConfirmPassword}
       />
+      <div className="module-spacer--medium" />
+      <div className="center">
+        <PrimaryButton
+          label={"アカウントを登録する"}
+          onClick={() =>
+            dispatch(signUp(username, email, password, confirmPassword))
+          }
+        />
+      </div>
     </div>
   );
 };
