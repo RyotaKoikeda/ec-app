@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { TextInput } from "../UiKit";
 import IconButton from "@material-ui/core/IconButton";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
@@ -78,7 +78,7 @@ const SetSizeArea = (props) => {
     props.setSizes(newSizes);
   };
 
-  const memoIndex = useMemo(() => {
+  useEffect(() => {
     setIndex(props.sizes.length);
   }, [props.sizes.length]);
 
