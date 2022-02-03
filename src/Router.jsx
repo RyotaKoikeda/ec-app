@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router";
 import {
   CartList,
   OrderConfirm,
+  OrderHistory,
   ProductDetail,
   ProductEdit,
   ProductList,
@@ -26,6 +27,7 @@ const Router = () => {
 
         <Route exact path="/cart" component={CartList} />
         <Route exact path="/order/confirm" component={OrderConfirm} />
+        <Route exact path="/order/history" component={OrderHistory} />
       </Auth>
     </Switch>
   );
