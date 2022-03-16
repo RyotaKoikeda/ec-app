@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import {
   CartList,
+  CheckoutWrapper,
   OrderConfirm,
   OrderHistory,
   ProductDetail,
@@ -31,6 +32,7 @@ const Router = () => {
         <Route exact path="/order/history" component={OrderHistory} />
 
         <Route exact path="/user/mypage" component={UserMyPage} />
+        <Route exact path="/user/payment/edit" component={CheckoutWrapper} />
       </Auth>
     </Switch>
   );
