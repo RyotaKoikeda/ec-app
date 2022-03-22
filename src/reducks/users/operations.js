@@ -56,6 +56,7 @@ export const listenAuthState = () => {
 
             dispatch(
               signInAction({
+                email: data.email,
                 isSignedIn: true,
                 role: data.role,
                 uid: uid,
@@ -111,6 +112,7 @@ export const signIn = (email, password) => {
 
             dispatch(
               signInAction({
+                email: data.email,
                 isSignedIn: true,
                 role: data.role,
                 uid: uid,

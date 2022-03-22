@@ -1,4 +1,7 @@
 import { CardElement } from "@stripe/react-stripe-js";
+import { db } from "../../firebase/index";
+import { push } from "connected-react-router";
+import { updateUserStateAction } from "../users/actions";
 
 const headers = new Headers();
 headers.set("Content-type", "application/json");
@@ -44,5 +47,29 @@ export const registerCard = (stripe, elements) => {
     const paymentMethodId = paymentMethod.id;
 
     const customerData = await createCustomer(email, paymentMethodId, uid);
+
+    if (customerData.id === "") {
+      alert("カード情報の登録に失敗しました。");
+      return;
+    } else {
+      const updateUserState = {
+        customer_id: customerData.id,
+        payment_method_id: paymentMethodId,
+      };
+
+      db.collection("users")
+        .doc(uid)
+        .update(updateUserState)
+        .then(() => {
+          dispatch(updateUserStateAction(updateUserState));
+          dispatch(push("/user/mypage"));
+        })
+        .catch((error) => {
+          // Delete stripe customer
+
+          alert("カード情報の登録に失敗しました");
+          return;
+        });
+    }
   };
 };
