@@ -34,3 +34,23 @@ exports.stripeCustomer = functions.https.onRequest((req, res) => {
       });
   });
 });
+
+exports.retrievePaymentMethod = functions.https.onRequest((req, res) => {
+  const corsHandler = cors({ origin: true });
+
+  corsHandler(req, res, () => {
+    // POSTメソッドかどうか判定
+    if (req.method !== "POST") {
+      sendResponse(res, 405, { error: "Invalid Request method!" });
+    }
+
+    return stripe.paymentMethod
+      .retrieve(req.body.paymentMethodId)
+      .then((paymentMethod) => {
+        sendResponse(res, 200, paymentMethod);
+      })
+      .catch((error) => {
+        sendResponse(res, 500, { error: error });
+      });
+  });
+});

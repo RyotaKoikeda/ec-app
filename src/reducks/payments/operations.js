@@ -22,6 +22,21 @@ const createCustomer = async (email, paymentMethodId, uid) => {
   return JSON.parse(customerResponse.body);
 };
 
+export const retrievePaymentMethod = async (paymentMethodId) => {
+  const response = await fetch(BASE_URL + "/v1/paymentMethod", {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      paymentMethodId: paymentMethodId,
+    }),
+  });
+
+  const paymentMethodResponse = await response.json();
+  const paymentMethod = JSON.parse(paymentMethodResponse.body);
+  console.log(paymentMethod);
+  return paymentMethod.card;
+};
+
 export const registerCard = (stripe, elements) => {
   return async (dispatch, getState) => {
     const user = getState().users;

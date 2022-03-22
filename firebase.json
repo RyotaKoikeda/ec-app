@@ -10,6 +10,14 @@
       {
         "source": "/v1/customer",
         "function": "stripeCustomer"
+      },
+      {
+        "source": "/v1/paymentMethod",
+        "function": "retrievePaymentMethod"
+      },
+      {
+        "source": "**",
+        "function": "/index.html"
       }
     ]
   },
