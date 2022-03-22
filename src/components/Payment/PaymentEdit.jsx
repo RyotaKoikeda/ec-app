@@ -43,7 +43,7 @@ const PaymentEdit = () => {
       <div className="module-spacer--medium" />
       <div className="center">
         <PrimaryButton label={"カード情報を保存する"} onClick={register} />
-        <PrimaryButton label={"マイページに戻る"} onClick={goBackToMyPage} />
+        <PrimaryButton label={"マイページに戻るa"} onClick={goBackToMyPage} />
       </div>
     </section>
   );
