@@ -16,6 +16,10 @@
         "function": "retrievePaymentMethod"
       },
       {
+        "source": "/v1/updatePaymentMethod",
+        "function": "updatePaymentMethod"
+      },
+      {
         "source": "**",
         "function": "/index.html"
       }
