@@ -23,8 +23,8 @@ const PaymentEdit = () => {
   const [card, setCard] = useState({});
 
   const register = useCallback(() => {
-    dispatch(registerCard(stripe, elements));
-  }, [stripe, elements]);
+    dispatch(registerCard(stripe, elements, customerId));
+  }, [stripe, elements, customerId]);
 
   const goBackToMyPage = useCallback(() => {
     dispatch(push("/user/mypage"));
