@@ -10,6 +10,33 @@ const sendResponse = (response, statusCode, body) => {
   });
 };
 
+exports.createPaymentIntent = functions.https.onRequest((req, res) => {
+  const corsHandler = cors({ origin: true });
+
+  corsHandler(req, res, () => {
+    if (req.method !== "POST") {
+      sendResponse(res, 405, { error: "Invalid Request" });
+    }
+
+    return stripe.paymentIntents
+      .create({
+        amount: req.body.amount,
+        confirm: true,
+        currency: "JPY",
+        customer: req.body.customerId,
+        metadata: { idempotencyKey: req.body.paymentMethodId },
+        payment_method: req.body.paymentMethodId,
+      })
+      .then((paymentIntent) => {
+        sendResponse(res, 200, paymentIntent);
+      })
+      .catch((error) => {
+        console.error(error);
+        sendResponse(res, 500, { error: error });
+      });
+  });
+});
+
 exports.stripeCustomer = functions.https.onRequest((req, res) => {
   const corsHandler = cors({ origin: true });
 

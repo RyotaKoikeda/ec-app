@@ -22,6 +22,25 @@ const createCustomer = async (email, paymentMethodId, uid) => {
   return JSON.parse(customerResponse.body);
 };
 
+export const createPaymentIntent = async (
+  amount,
+  customerId,
+  paymentMethodId
+) => {
+  const response = await fetch(BASE_URL + "/v1/createPaymentIntent", {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      amount: amount,
+      customerId: customerId,
+      paymentMethodId: paymentMethodId,
+    }),
+  });
+
+  const paymentIntentResponse = await response.json();
+  return JSON.parse(paymentIntentResponse.body);
+};
+
 export const retrievePaymentMethod = async (paymentMethodId) => {
   const response = await fetch(BASE_URL + "/v1/paymentMethod", {
     method: "POST",

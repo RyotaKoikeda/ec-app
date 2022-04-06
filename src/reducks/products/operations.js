@@ -1,6 +1,7 @@
 import { push } from "connected-react-router";
 import { db, FirebaseTimestamp } from "../../firebase";
 import { fetchProductsAction, deleteProductsAction } from "./actions";
+import { createPaymentIntent } from "../payments/operations";
 
 const productsRef = db.collection("products");
 
@@ -91,34 +92,59 @@ export const orderProduct = (productsInCart, amount) => {
       );
       return false;
     } else {
-      batch
-        .commit()
-        .then(() => {
-          const orderRef = userRef.collection("orders").doc();
-          const date = timestamp.toDate();
-          const shippingDate = FirebaseTimestamp.fromDate(
-            new Date(date.setDate(date.getDate() + 3))
-          );
+      // 注文履歴データを作成
+      const orderRef = userRef.collection("orders").doc();
+      const date = timestamp.toDate();
+      // 配送日を3日後に設定
+      const shippingDate = FirebaseTimestamp.fromDate(
+        new Date(date.setDate(date.getDate() + 3))
+      );
 
-          const history = {
-            amount: amount,
-            created_at: timestamp,
-            id: orderRef.id,
-            products: products,
-            shipping_date: shippingDate,
-            updated_at: timestamp,
-          };
+      const history = {
+        amount: amount,
+        created_at: timestamp,
+        id: orderRef.id,
+        products: products,
+        shipping_date: shippingDate,
+        updated_at: timestamp,
+      };
 
-          orderRef.set(history);
+      batch.set(orderRef, history, { merge: true });
 
-          dispatch(push("/order/complete"));
-        })
-        .catch(() => {
-          alert(
-            "注文処理に失敗しました。通信環境をご確認の上、もう一度お試しください。"
-          );
-          return false;
-        });
+      // Stripeの決済処理を実行する
+      const customerId = getState().users.customer_id;
+      const paymentMethodId = getState().users.payment_method_id;
+      const paymentIntent = await createPaymentIntent(
+        amount,
+        customerId,
+        paymentMethodId
+      );
+
+      console.log(paymentMethodId);
+
+      if (paymentMethodId === "") {
+        alert("クレジットカードの登録をしてください。");
+        return false;
+      }
+
+      // 決済処理が成功
+      if (paymentIntent) {
+        // DBを更新
+        return batch
+          .commit()
+          .then(() => {
+            dispatch(push("/order/complete"));
+          })
+          .catch(() => {
+            alert(
+              "注文処理に失敗しました。通信環境をご確認のうえ、もう一度お試しください。"
+            );
+          });
+      } else {
+        alert(
+          "注文処理に失敗しました。通信環境をご確認のうえ、もう一度お試しください。"
+        );
+      }
     }
   };
 };
