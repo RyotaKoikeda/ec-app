@@ -120,8 +120,6 @@ export const orderProduct = (productsInCart, amount) => {
         paymentMethodId
       );
 
-      console.log(paymentMethodId);
-
       if (paymentMethodId === "") {
         alert("クレジットカードの登録をしてください。");
         return false;
