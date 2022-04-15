@@ -7,7 +7,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import { makeStyles } from "@material-ui/core/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
 const useStyles = makeStyles({
   iconCell: {
@@ -41,11 +40,6 @@ const SizeTable = (props) => {
                   ) : (
                     <div>売切</div>
                   )}
-                </TableCell>
-                <TableCell className={classes.iconCell}>
-                  <IconButton>
-                    <FavoriteBorderIcon />
-                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}

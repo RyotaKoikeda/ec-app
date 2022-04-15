@@ -38,7 +38,10 @@ const Header = () => {
 
   const handleDrawerToggle = useCallback(
     (event) => {
-      if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+      if (
+        event.type === "keydown" &&
+        (event.key === "Tab" || event.key === "Shift")
+      ) {
         return;
       }
       setOpen(!open);
@@ -50,7 +53,10 @@ const Header = () => {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.menuBar}>
         <Toolbar className={classes.toolBar}>
-          <h1 className={`gothic ${classes.logo}`} onClick={() => dispatch(push("/"))}>
+          <h1
+            className={`gothic ${classes.logo}`}
+            onClick={() => dispatch(push("/"))}
+          >
             ec app
           </h1>
           {isSignedIn && (

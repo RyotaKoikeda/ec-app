@@ -129,6 +129,7 @@ export const signIn = (email, password) => {
             );
 
             dispatch(push("/"));
+            window.location.reload();
           });
       }
     });
