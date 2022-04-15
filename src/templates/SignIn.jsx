@@ -53,6 +53,7 @@ const SignIn = () => {
           </div>
           <div className="spacer-large" />
           <p onClick={() => dispatch(push("/signup"))}>アカウントをお持ちではない方はこちら</p>
+          <div className="spacer-small" />
           <p onClick={() => dispatch(push("/signin/reset"))}>パスワードを忘れた方はこちら</p>
         </div>
       </div>
