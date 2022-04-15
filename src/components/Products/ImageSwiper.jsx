@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Swiper from "react-id-swiper";
-import NoImage from "../../assets/img/src/no_image.png";
+import NoImage from "../../assets/images/no-img.png";
 import "swiper/css/swiper.css";
 
 const ImageSwiper = (props) => {
@@ -23,12 +23,12 @@ const ImageSwiper = (props) => {
   return (
     <Swiper {...params}>
       {images.length === 0 ? (
-        <div className="p-media__thumb">
+        <div className="swiper-slide">
           <img src={NoImage} alt="no image" />
         </div>
       ) : (
         images.map((image, id) => (
-          <div className="p-media__thumb" key={id}>
+          <div className="swiper-slide" key={id}>
             <img src={image.path} alt="商品画像" />
           </div>
         ))

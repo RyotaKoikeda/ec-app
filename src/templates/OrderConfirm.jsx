@@ -48,36 +48,22 @@ const OrderConfirm = () => {
   }, [productsInCart, total]);
 
   return (
-    <section className="c-section-wrapin">
-      <h2 className="u-text__headline">注文の確認</h2>
-      <div className="p-grid__row">
+    <div className="container">
+      <h2 className="page-title">注文の確認</h2>
+      <div className="flex-row">
         <div className={classes.detailBox}>
-          <List>
-            {productsInCart.length > 0 &&
-              productsInCart.map((product) => (
-                <CartListItem key={product.cartId} product={product} />
-              ))}
-          </List>
+          <List>{productsInCart.length > 0 && productsInCart.map((product) => <CartListItem key={product.cartId} product={product} />)}</List>
         </div>
         <div className={classes.orderBox}>
-          <TextDetail
-            label={"商品合計"}
-            value={"¥" + subtotal.toLocaleString()}
-          />
+          <TextDetail label={"商品合計"} value={"¥" + subtotal.toLocaleString()} />
           <TextDetail label={"消費税"} value={"¥" + tax} />
-          <TextDetail
-            label={"送料"}
-            value={"¥" + shippingFee.toLocaleString()}
-          />
+          <TextDetail label={"送料"} value={"¥" + shippingFee.toLocaleString()} />
           <Divider />
-          <TextDetail
-            label={"合計(税込)"}
-            value={"¥" + total.toLocaleString()}
-          />
+          <TextDetail label={"合計(税込)"} value={"¥" + total.toLocaleString()} />
           <PrimaryButton label={"注文する"} onClick={order} />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

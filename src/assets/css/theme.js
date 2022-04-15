@@ -5,15 +5,15 @@ import { createTheme } from "@material-ui/core/styles";
 export const theme = createTheme({
   palette: {
     primary: {
-      light: "#88ffff",
-      main: "#4dd0e1",
-      dark: "#009faf",
+      light: "#ffcd83",
+      main: "#ffb74d",
+      dark: "#f57c00",
       contrastText: "#000",
     },
     secondary: {
-      light: "#ffff81",
-      main: "#ffd54f",
-      dark: "#c8a415",
+      light: "#e33371",
+      main: "#dc004e",
+      dark: "#9a0036",
       contrastText: "#000",
     },
     grey: {
@@ -31,6 +31,14 @@ export const theme = createTheme({
       A200: "#aaaaaa",
       A400: "#303030",
       A700: "#616161",
+    },
+  },
+  breakpoints: {
+    keys: ["sm", "md", "lg"],
+    values: {
+      sm: 440,
+      md: 768,
+      lg: 1280,
     },
   },
 });

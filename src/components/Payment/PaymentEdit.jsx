@@ -3,14 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { PrimaryButton, TextDetail } from "../UiKit";
 import { push } from "connected-react-router";
-import {
-  registerCard,
-  retrievePaymentMethod,
-} from "../../reducks/payments/operations";
-import {
-  getCustomerId,
-  getPaymentMethodId,
-} from "../../reducks/users/selectors";
+import { registerCard, retrievePaymentMethod } from "../../reducks/payments/operations";
+import { getCustomerId, getPaymentMethodId } from "../../reducks/users/selectors";
 
 const PaymentEdit = () => {
   const dispatch = useDispatch();
@@ -48,34 +42,34 @@ const PaymentEdit = () => {
   }, [card]);
 
   return (
-    <section className="c-section-container">
-      <h2 className="u-text__headline u-text-center">
-        クレジットカード情報の登録・編集
-      </h2>
-      <div className="module-spacer--medium" />
-      <h3>現在登録されているカード情報</h3>
-      <div className="module-spacer--medium" />
-      <TextDetail label={card.brand} value={cardNumber} />
-      <CardElement
-        options={{
-          style: {
-            base: {
-              fontSize: "16px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#aab7c4",
+    <section>
+      <div className="form-wrap">
+        <h2 className="page-title">クレジットカード情報の編集</h2>
+        <div className="spacer-small" />
+        <h3>現在登録されているカード情報</h3>
+        <div className="spacer-small" />
+        <TextDetail label={card.brand} value={cardNumber} />
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: "16px",
+                color: "#424770",
+                "::placeholder": {
+                  color: "#aab7c4",
+                },
+              },
+              invalid: {
+                color: "#9e2146",
               },
             },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      />
-      <div className="module-spacer--medium" />
-      <div className="center">
-        <PrimaryButton label={"カード情報を保存する"} onClick={register} />
-        <PrimaryButton label={"マイページに戻る"} onClick={goBackToMyPage} />
+          }}
+        />
+        <div className="spacer-medium" />
+        <div className="center">
+          <PrimaryButton label={"カード情報を保存する"} onClick={register} />
+          <PrimaryButton label={"マイページに戻る"} onClick={goBackToMyPage} />
+        </div>
       </div>
     </section>
   );

@@ -17,27 +17,16 @@ const Reset = () => {
   );
 
   return (
-    <div className="c-section-container">
-      <h2 className="u-text__headline u-text-center">パスワードのリセット</h2>
-      <div className="module-spacer--medium" />
-      <TextInput
-        fullWidth={true}
-        label={"メールアドレス"}
-        multiline={false}
-        required={true}
-        rows={1}
-        value={email}
-        type={"email"}
-        onChange={inputEmail}
-      />
-      <div className="module-spacer--medium" />
-      <div className="center">
-        <PrimaryButton
-          label={"Reset Password"}
-          onClick={() => dispatch(resetPassword(email))}
-        />
-        <div className="module-spacer--medium" />
-        <p onClick={() => dispatch(push("/signin"))}>ログイン画面に戻る</p>
+    <div className="container">
+      <h2 className="page-title">パスワードのリセット</h2>
+      <div className="form-wrap">
+        <TextInput fullWidth={true} label={"メールアドレス"} multiline={false} required={true} rows={1} value={email} type={"email"} onChange={inputEmail} />
+        <div className="spacer-small" />
+        <div className="center">
+          <PrimaryButton label={"Reset Password"} onClick={() => dispatch(resetPassword(email))} />
+          <div className="spacer-small" />
+          <p onClick={() => dispatch(push("/signin"))}>ログイン画面に戻る</p>
+        </div>
       </div>
     </div>
   );

@@ -31,14 +31,9 @@ const OrderHistory = () => {
   }, []);
 
   return (
-    <section className="c-section-wrapin">
-      <List className={classes.orderList}>
-        {orders.length > 0 &&
-          orders.map((order) => (
-            <OrderHistoryItem order={order} key={order.id} />
-          ))}
-      </List>
-    </section>
+    <div className="container">
+      <List className={classes.orderList}>{orders.length > 0 && orders.map((order) => <OrderHistoryItem order={order} key={order.id} />)}</List>
+    </div>
   );
 };
 

@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import logo from "../../assets/img/icons/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsSignedIn } from "../../reducks/users/selectors";
 import { push } from "connected-react-router";
@@ -24,6 +23,9 @@ const useStyles = makeStyles({
   iconButtons: {
     margin: "0 0 0 auto",
   },
+  logo: {
+    marginTop: 8,
+  },
 });
 
 const Header = () => {
@@ -36,10 +38,7 @@ const Header = () => {
 
   const handleDrawerToggle = useCallback(
     (event) => {
-      if (
-        event.type === "keydown" &&
-        (event.key === "Tab" || event.key === "Shift")
-      ) {
+      if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
         return;
       }
       setOpen(!open);
@@ -51,12 +50,9 @@ const Header = () => {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.menuBar}>
         <Toolbar className={classes.toolBar}>
-          <img
-            src={logo}
-            alt="Torahack Logo"
-            width="128px"
-            onClick={() => dispatch(push("/"))}
-          />
+          <h1 className={`gothic ${classes.logo}`} onClick={() => dispatch(push("/"))}>
+            ec app
+          </h1>
           {isSignedIn && (
             <div className={classes.iconButtons}>
               <HeaderMenus handleDrawerToggle={handleDrawerToggle} />

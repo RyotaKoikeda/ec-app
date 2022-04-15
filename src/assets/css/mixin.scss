@@ -1,0 +1,60 @@
+$black: #232323;
+$primaryLight: #ffcd83;
+$primaryMain: #ffb74d;
+$primaryDark: #f57c00;
+$secondaryLight: #e33371;
+$secondaryMain: #dc004e;
+$secondaryDark: #9a0036;
+
+@mixin center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin flex {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@mixin flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@mixin flex-column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+$pc: 1280px;
+$tab: 768px;
+$sp: 440px;
+
+@mixin pc {
+  @media (max-width: ($pc)) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media (max-width: ($tab)) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}

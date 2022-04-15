@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { PrimaryButton } from "../UiKit";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
-import NoImage from "../../assets/img/src/no_image.png";
+import NoImage from "../../assets/images/no-img.png";
 
 const useStyles = makeStyles({
   list: {
@@ -41,25 +41,13 @@ const OrderedProducts = (props) => {
         <React.Fragment key={id}>
           <ListItem className={classes.list}>
             <ListItemAvatar>
-              <img
-                className={classes.image}
-                src={
-                  product.images.length > 0 ? product.images[0].path : NoImage
-                }
-                alt={"Ordered Product"}
-              />
+              <img className={classes.image} src={product.images.length > 0 ? product.images[0].path : NoImage} alt={"Ordered Product"} />
             </ListItemAvatar>
             <div className={classes.text}>
-              <ListItemText
-                primary={product.name}
-                secondary={"サイズ: " + product.size}
-              />
+              <ListItemText primary={product.name} secondary={"サイズ: " + product.size} />
               <ListItemText primary={"¥" + product.price.toLocaleString()} />
             </div>
-            <PrimaryButton
-              label={"商品詳細を見る"}
-              onClick={() => goToProductDetail(product.id)}
-            />
+            <PrimaryButton label={"商品詳細を見る"} onClick={() => goToProductDetail(product.id)} />
           </ListItem>
           <Divider />
         </React.Fragment>

@@ -1,0 +1,208 @@
+@import "mixin";
+
+a {
+  text-decoration: none;
+  transition: all 0.2s;
+
+  &:hover {
+    color: #888;
+  }
+}
+
+li {
+  list-style-type: none;
+}
+
+body {
+  font-variant-ligatures: none;
+  font-family: "游ゴシック体", "YuGothic", "游ゴシック", "Yu Gothic", sans-serif;
+  overflow-x: hidden;
+  color: $black;
+  font-weight: 500;
+}
+
+img {
+  max-width: 100%;
+}
+
+.none {
+  display: none;
+}
+
+.pc {
+  display: block !important;
+  @include tab {
+    display: none !important;
+  }
+}
+
+.tab {
+  display: none !important;
+  @include tab {
+    display: block !important;
+  }
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.flex {
+  @include flex;
+}
+
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.flex-around {
+  @include flex-around;
+}
+
+.flex-column {
+  @include flex-column;
+}
+
+.spacer-small {
+  height: 20px;
+}
+
+.spacer-medium {
+  height: 32px;
+}
+
+.spacer-large {
+  height: 60px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  @include center;
+  padding: 0 40px;
+  @include pc {
+    padding: 0 calc(40vw / (1280 / 100));
+  }
+}
+
+.main {
+  padding: 160px 0;
+}
+
+.form-wrap {
+  max-width: 400px;
+  padding: 0 20px;
+  margin: 60px auto;
+}
+
+.page-title {
+  font-size: 24px;
+  text-align: center;
+  font-family: "游ゴシック体", "YuGothic", "游ゴシック", "Yu Gothic", sans-serif;
+}
+
+.section-wrap {
+  margin-top: 60px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-family: "游ゴシック体", "YuGothic", "游ゴシック", "Yu Gothic", sans-serif;
+}
+
+.page-logo {
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.section-container {
+  position: relative;
+  margin-top: 20px;
+  padding: 32px 16px;
+  border: 1px solid #c0c0c0;
+  border-radius: 12px;
+  box-shadow: 0px 1px 2px -1px rgb(0 0 0 / 20%), 0px 1px 3px 0px rgb(0 0 0 / 14%), 0px 2px 2px 0px rgb(0 0 0 / 12%);
+}
+
+.section-table {
+  min-width: 1200px;
+}
+
+.edit-images {
+  display: flex;
+  flex-flow: wrap;
+  .edit-thumb {
+    position: relative;
+    width: calc(50% - 1rem);
+    margin: 0.5rem;
+    overflow: hidden;
+    &::before {
+      content: "";
+      display: block;
+      padding-top: 100%;
+    }
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}
+
+#swiper-detail {
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 38px;
+    height: 38px;
+    margin-top: 0;
+    &::after {
+      display: none;
+    }
+  }
+  .swiper-button-next {
+    background: url("../images/arrow-bk.png") no-repeat;
+    background-size: contain;
+  }
+  .swiper-button-prev {
+    background: url("../images/arrow-bk.png") no-repeat;
+    transform: scale(-1, 1);
+    background-size: contain;
+  }
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+  }
+  .swiper-pagination-bullet-active {
+    background: rgb(119, 119, 119);
+    width: 12px;
+    height: 12px;
+  }
+  .swiper-container {
+    position: relative;
+    overflow: hidden;
+    height: 60vw;
+    max-height: 600px;
+    min-height: 400px;
+  }
+  .swiper-slide {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    line-height: 1;
+    img {
+      align-self: center;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}

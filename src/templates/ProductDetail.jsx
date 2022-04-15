@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   price: {
-    fontSize: 36,
+    fontSize: 24,
   },
 }));
 
@@ -85,23 +85,25 @@ const ProductDetail = () => {
   };
 
   return (
-    <section className="c-section-wrapin">
+    <div className="container">
       {product && (
-        <div className="p-grid__row">
-          <div className={classes.sliderBox}>
+        <div className="flex-row">
+          <div id="swiper-detail" className={classes.sliderBox}>
             <ImageSwiper images={product.images} />
           </div>
           <div className={classes.detail}>
-            <h2 className="u-text__headline">{product.name}</h2>
-            <p className={classes.price}>{product.price.toLocaleString()}</p>
-            <div className="module-spacer--small" />
+            <div className="spacer-medium" />
+            <h2 className="page-title">{product.name}</h2>
+            <div className="spacer-medium" />
+            <p className={classes.price}>¥{product.price.toLocaleString()}</p>
+            <div className="spacer-small" />
             <SizeTable addProduct={addProduct} sizes={product.sizes} />
-            <div className="module-spacer--small" />
+            <div className="spacer-small" />
             <p>{returnCodeToBr(product.description)}</p>
           </div>
         </div>
       )}
-    </section>
+    </div>
   );
 };
 

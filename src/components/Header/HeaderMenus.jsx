@@ -31,15 +31,11 @@ const HeaderMenus = (props) => {
               productsInCart.push(product);
               break;
             case "modified":
-              const index = productsInCart.findIndex(
-                (product) => product.cartId === change.doc.id
-              );
+              const index = productsInCart.findIndex((product) => product.cartId === change.doc.id);
               productsInCart[index] = product;
               break;
             case "removed":
-              productsInCart = productsInCart.filter(
-                (product) => product.cartId !== change.doc.id
-              );
+              productsInCart = productsInCart.filter((product) => product.cartId !== change.doc.id);
               break;
             default:
               break;
@@ -54,7 +50,7 @@ const HeaderMenus = (props) => {
   return (
     <>
       <IconButton onClick={() => dispatch(push("/cart"))}>
-        <Badge badgeContent={productsInCart.length} color="secondary">
+        <Badge badgeContent={productsInCart.length} color="primary">
           <ShoppingCartIcon />
         </Badge>
       </IconButton>

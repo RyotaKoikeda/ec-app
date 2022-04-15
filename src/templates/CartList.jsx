@@ -30,21 +30,18 @@ const CartList = () => {
   }, []);
 
   return (
-    <section className="c-section-wrapin">
-      <h2 className="u-text__headline">ショッピングカート</h2>
+    <div className="container">
+      <h2 className="page-title">ショッピングカート</h2>
       <List className={classes.root}>
-        {productsInCart.length > 0 &&
-          productsInCart.map((product) => (
-            <CartListItem key={product.cartId} product={product} />
-          ))}
+        {productsInCart.length > 0 && productsInCart.map((product) => <CartListItem key={product.cartId} product={product} />)}
       </List>
-      <div className="module-spacer--medium" />
-      <div className="p-grid__column">
+      <div className="spacer-medium" />
+      <div className="flex-column">
         <PrimaryButton label={"レジへ進む"} onClick={goToOrder} />
-        <div className="module-spacer--extra-extra-small" />
+        <div className="spacer-small" />
         <GreyButton label={"ショッピングを続ける"} onClick={backToHome} />
       </div>
-    </section>
+    </div>
   );
 };
 

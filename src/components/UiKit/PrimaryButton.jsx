@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     marginBottom: 16,
     color: "#000",
     fontSize: 16,
-    backgroundColor: "#4dd0e1",
+    backgroundColor: "#ffcd83",
   },
 });
 
@@ -17,11 +17,7 @@ const PrimaryButton = (props) => {
   const classes = useStyles();
   return (
     <div>
-      <Button
-        className={classes.button}
-        variant="contained"
-        onClick={() => props.onClick()}
-      >
+      <Button className={classes.button} variant="contained" onClick={() => props.onClick()}>
         {props.label}
       </Button>
     </div>

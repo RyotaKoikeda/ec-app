@@ -85,20 +85,11 @@ const ProductEdit = () => {
   }, []);
 
   return (
-    <section>
-      <h2 className="u-text__headline u-text-center">商品の登録・編集</h2>
-      <div className="c-section-container">
+    <div className="container">
+      <h2 className="page-title">商品の登録・編集</h2>
+      <div className="form-wrap">
         <ImageArea images={images} setImages={setImages} />
-        <TextInput
-          fullWidth={true}
-          label={"商品名"}
-          multiline={false}
-          required={true}
-          onChange={inputName}
-          rows={1}
-          value={name}
-          type={"text"}
-        />
+        <TextInput fullWidth={true} label={"商品名"} multiline={false} required={true} onChange={inputName} rows={1} value={name} type={"text"} />
         <TextInput
           fullWidth={true}
           label={"商品説明"}
@@ -109,54 +100,17 @@ const ProductEdit = () => {
           value={description}
           type={"text"}
         />
-        <SelectBox
-          label={"カテゴリー"}
-          required={true}
-          options={categories}
-          select={setCategory}
-          value={category}
-        />
-        <SelectBox
-          label={"性別"}
-          required={true}
-          options={genders}
-          select={setGender}
-          value={gender}
-        />
-        <TextInput
-          fullWidth={true}
-          label={"価格"}
-          multiline={false}
-          required={true}
-          onChange={inputPrice}
-          rows={1}
-          value={price}
-          type={"number"}
-        />
-        <div className="module-spacer--small" />
+        <SelectBox label={"カテゴリー"} required={true} options={categories} select={setCategory} value={category} />
+        <SelectBox label={"性別"} required={true} options={genders} select={setGender} value={gender} />
+        <TextInput fullWidth={true} label={"価格"} multiline={false} required={true} onChange={inputPrice} rows={1} value={price} type={"number"} />
+        <div className="spacer-small" />
         <SetSizeArea sizes={sizes} setSizes={setSizes} />
-        <div className="module-spacer--small" />
+        <div className="spacer-small" />
         <div className="center">
-          <PrimaryButton
-            label={"商品情報を保存"}
-            onClick={() =>
-              dispatch(
-                saveProduct(
-                  id,
-                  name,
-                  description,
-                  category,
-                  gender,
-                  price,
-                  images,
-                  sizes
-                )
-              )
-            }
-          />
+          <PrimaryButton label={"商品情報を保存"} onClick={() => dispatch(saveProduct(id, name, description, category, gender, price, images, sizes))} />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

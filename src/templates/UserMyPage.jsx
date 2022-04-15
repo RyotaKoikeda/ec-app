@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { push } from "connected-react-router";
 import { PrimaryButton, TextDetail } from "../components/UiKit";
 import { getUsername } from "../reducks/users/selectors";
-import { push } from "connected-react-router";
 
 const UserMyPage = () => {
   const dispatch = useDispatch();
@@ -17,22 +17,17 @@ const UserMyPage = () => {
   );
 
   return (
-    <section className="c-section-container">
-      <h2 className="u-text__headline u-text-center">マイページ</h2>
-      <div className="module-spacer--medium" />
-      <TextDetail label={"ユーザー名"} value={username} />
-      <div className="module-spacer--medium" />
-      <div className="center">
-        <PrimaryButton
-          label={"カード情報の編集"}
-          onClick={() => transition("/user/payment/edit")}
-        />
-        <PrimaryButton
-          label={"注文履歴の確認"}
-          onClick={() => transition("/order/history")}
-        />
+    <div className="container">
+      <h2 className="page-title">マイページ</h2>
+      <div className="form-wrap">
+        <TextDetail label={"ユーザー名"} value={username} />
+        <div className="spacer-medium" />
+        <div className="center">
+          <PrimaryButton label={"カード情報の編集"} onClick={() => transition("/user/payment/edit")} />
+          <PrimaryButton label={"注文履歴の確認"} onClick={() => transition("/order/history")} />
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
